@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">DrSide</string>
+    <string name="app_name">OHM Magnet Therapy - Admin</string>
+    <string name="label_login_here">Login Here</string>
+    <string name="hint_enter_phone_number">Enter Phone Number</string>
+    <string name="hint_enter_password">Enter Password</string>
+    <string name="label_let_s_go">Let\'s Go</string>
+    <string name="openDrawer">openDrawer</string>
+    <string name="closeDrawer">closeDrawer</string>
+    <string name="label_home">Home</string>
+    <string name="magnet_details">Magnet Details</string>
+    <string name="label_prospection_services">Prospection Services</string>
+    <string name="label_feedback">Feedback</string>
+    <string name="label_about_us">About Us</string>
+    <string name="label_contact_us">Contact Us</string>
+    <string name="label_logout">Logout</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_appointment">Appointment</string>
+    <string name="label_patient_name">Patient Name:</string>
+    <string name="label_contact_number">Contact Number</string>
+    <string name="label_appointment_time">Appointment Time:</string>
+    <string name="button_accept">accept</string>
+    <string name="button_cancel">cancel</string>
 </resources>

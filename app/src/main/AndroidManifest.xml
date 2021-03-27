@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrSide">
-        <activity android:name=".authentication.AuthMainActivity"></activity>
+        <activity android:name=".home.HomeMainActivity"></activity>
+        <activity android:name=".authentication.AuthMainActivity" />
         <activity android:name=".splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
