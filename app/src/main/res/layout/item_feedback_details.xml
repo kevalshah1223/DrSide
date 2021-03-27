@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dimen_20dp"
+    android:layout_marginTop="@dimen/dimen_20dp"
+    app:cardCornerRadius="@dimen/dimen_10dp"
+    app:cardElevation="@dimen/dimen_2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_10dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewSubjectText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_subject"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewSubject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/textViewSubjectText"
+            app:layout_constraintStart_toStartOf="@id/textViewSubjectText"
+            app:layout_constraintTop_toBottomOf="@id/textViewSubjectText"
+            tools:text="Best Therapy" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewMessageText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_6dp"
+            android:text="@string/label_message"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="@id/textViewSubjectText"
+            app:layout_constraintStart_toStartOf="@id/textViewSubjectText"
+            app:layout_constraintTop_toBottomOf="@id/textViewSubject" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewMessage"
+            android:layout_width="0dp"
+            android:maxLines="4"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/textViewMessageText"
+            app:layout_constraintStart_toStartOf="@id/textViewMessageText"
+            app:layout_constraintTop_toBottomOf="@id/textViewMessageText"
+            tools:text="Best Therapy Best Therapy Best Therapy Best Therapy" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

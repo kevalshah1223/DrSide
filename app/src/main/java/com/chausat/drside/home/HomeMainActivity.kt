@@ -1,6 +1,8 @@
 package com.chausat.drside.home
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -15,6 +17,7 @@ import com.bumptech.glide.Glide
 import com.chausat.drside.CommonTag
 import com.chausat.drside.Logout
 import com.chausat.drside.R
+import com.chausat.drside.ServiceChecker
 import com.chausat.drside.base.BaseActivity
 import com.chausat.drside.home.fragment.AppointmentHomeFragment
 import com.chausat.drside.home.fragment.FeedbackHomeFragment
@@ -39,8 +42,6 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        groupMain = findViewById(R.id.groupMain)
-        groupInternet = findViewById(R.id.groupInternet)
 
         val permission = object : PermissionListener {
             override fun onPermissionGranted() {
@@ -63,10 +64,28 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         setContentView(R.layout.activity_home_main)
 
+        groupMain = findViewById(R.id.groupMain)
+        groupInternet = findViewById(R.id.groupInternet)
         drawerLayoutMain = findViewById(R.id.drawerLayoutMain)
         imageViewMainDrawer = findViewById(R.id.imageViewMainDrawer)
         imageViewDrawerLogout = findViewById(R.id.imageViewDrawerLogout)
         navigationView = findViewById(R.id.navigationView)
+
+        val handler = Handler(Looper.myLooper()!!)
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+                if (ServiceChecker().isConnected(this@HomeMainActivity)!!) {
+                    groupMain.visibility = View.VISIBLE
+                    groupInternet.visibility = View.GONE
+                } else {
+                    groupMain.visibility = View.GONE
+                    groupInternet.visibility = View.VISIBLE
+                }
+
+                handler.postDelayed(this, 1000)
+
+            }
+        }, 1000)
 
         val headerNavigationView = navigationView.getHeaderView(0)
         val imageViewDrProfile =

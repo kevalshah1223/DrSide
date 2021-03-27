@@ -89,7 +89,7 @@ class AppointmentRecyclerViewAdapter :
         val message = if (isApproved) {
             "Respected $userName,\nYour Appointment for Magnet Therapy is Approved.\nTime: $appointmentTime"
         } else {
-            "Your Appointment for Magnet Therapy is Canceled.\nTime: $appointmentTime"
+            "Respected $userName,\nYour Appointment for Magnet Therapy is Canceled.\nTime: $appointmentTime"
         }
         SmsManager.getDefault().sendTextMessage(
             "$userNumber",
