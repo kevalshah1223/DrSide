@@ -7,6 +7,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.Group
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
@@ -25,6 +26,10 @@ import com.gun0912.tedpermission.TedPermission
 class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener {
 
+    private lateinit var groupMain: Group
+    private lateinit var groupInternet: Group
+
+
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayoutMain: DrawerLayout
     private lateinit var imageViewMainDrawer: AppCompatImageView
@@ -34,6 +39,8 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        groupMain = findViewById(R.id.groupMain)
+        groupInternet = findViewById(R.id.groupInternet)
 
         val permission = object : PermissionListener {
             override fun onPermissionGranted() {

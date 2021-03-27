@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/drawerLayoutMain"
-    tools:openDrawer="start"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home.HomeMainActivity">
@@ -11,6 +10,54 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="appBarLayout,placeHolder" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupInternet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="viewBackground, imageViewNoInternet,textViewNoInternet" />
+
+        <View
+            android:id="@+id/viewBackground"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/mainColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewNoInternet"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:tint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.3"
+            app:srcCompat="@drawable/ic_no_wifi" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewNoInternet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_no_internet_connection_ntry_again"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewNoInternet" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"

@@ -15,6 +15,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="label_appointment">Appointment</string>
+    <string name="label_no_internet_connection_ntry_again">No Internet Connection!\nTry Again</string>
     <string name="label_patient_name">Patient Name:</string>
     <string name="label_contact_number">Contact Number</string>
     <string name="label_appointment_time">Appointment Time:</string>

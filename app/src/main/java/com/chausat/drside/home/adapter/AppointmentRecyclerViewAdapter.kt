@@ -70,14 +70,14 @@ class AppointmentRecyclerViewAdapter :
             textViewPatientAppointment.text = userData.appointmentTime
 
             buttonAcceptAppointment.setOnClickListener {
-                sendSms(userData.userContact, userData.appointmentTime, true)
+                sendSms(userData.userName,userData.userContact, userData.appointmentTime, true)
                 setStatus(true, userData.userId)
                 groupButtonAction.visibility = View.GONE
                 textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_approved)
             }
 
             buttonCancelAppointment.setOnClickListener {
-                sendSms(userData.userContact, userData.appointmentTime, false)
+                sendSms(userData.userName,userData.userContact, userData.appointmentTime, false)
                 setStatus(false, userData.userId)
                 groupButtonAction.visibility = View.GONE
                 textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_canceled)
@@ -85,9 +85,9 @@ class AppointmentRecyclerViewAdapter :
         }
     }
 
-    private fun sendSms(userNumber: String, appointmentTime: String, isApproved: Boolean) {
+    private fun sendSms(userName:String,userNumber: String, appointmentTime: String, isApproved: Boolean) {
         val message = if (isApproved) {
-            "Your Appointment for Magnet Therapy is Approved.\nTime: $appointmentTime"
+            "Respected $userName,\nYour Appointment for Magnet Therapy is Approved.\nTime: $appointmentTime"
         } else {
             "Your Appointment for Magnet Therapy is Canceled.\nTime: $appointmentTime"
         }
