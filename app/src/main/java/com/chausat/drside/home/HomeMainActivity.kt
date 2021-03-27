@@ -11,12 +11,16 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.chausat.drside.CommonTag
 import com.chausat.drside.Logout
 import com.chausat.drside.R
 import com.chausat.drside.base.BaseActivity
 import com.chausat.drside.home.fragment.AppointmentHomeFragment
+import com.chausat.drside.home.fragment.FeedbackHomeFragment
 import com.chausat.drside.viewmodel.MainActivityViewModel
 import com.google.android.material.navigation.NavigationView
+import com.gun0912.tedpermission.PermissionListener
+import com.gun0912.tedpermission.TedPermission
 
 class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener,
     View.OnClickListener {
@@ -30,6 +34,21 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val permission = object : PermissionListener {
+            override fun onPermissionGranted() {
+                CommonTag.PERMISSION_FLAG = true
+            }
+
+            override fun onPermissionDenied(deniedPermissions: MutableList<String>?) {
+                CommonTag.PERMISSION_FLAG = false
+            }
+        }
+
+        TedPermission.with(this)
+            .setPermissionListener(permission)
+            .setPermissions(android.Manifest.permission.SEND_SMS)
+            .check()
 
         doctorViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         doctorViewModel.fetchDrInfo()
@@ -76,10 +95,19 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
                 )
             }
 
+            R.id.menuFeedback -> {
+                openFragment(
+                    fragment = FeedbackHomeFragment(),
+                    isReplace = true,
+                    isBackStack = true
+                )
+            }
+
             R.id.menuLogout -> {
                 logout()
             }
         }
+        drawerLayoutMain.closeDrawer(GravityCompat.START, true)
         return true
     }
 

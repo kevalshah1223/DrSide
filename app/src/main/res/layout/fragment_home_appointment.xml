@@ -24,6 +24,8 @@
         android:id="@+id/recyclerViewAppointment"
         tools:listitem="@layout/item_appointment_details"
         android:layout_width="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/dimen_20dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

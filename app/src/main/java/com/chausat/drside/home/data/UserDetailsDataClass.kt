@@ -6,7 +6,7 @@ data class UserDetailsDataClass(
     val userContact: String,
     val appointmentTime: String,
     val gender: String,
-    val isApproved: String = "pending"
+    val approved: String
 ) {
     constructor() : this(
         userId = 0,
@@ -14,6 +14,6 @@ data class UserDetailsDataClass(
         userContact = "",
         appointmentTime = "",
         gender = "",
-        isApproved = "pending"
+        approved = ""
     )
 }

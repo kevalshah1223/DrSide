@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.chausat.drside.dataclass.CredentialInfo
 import com.chausat.drside.dataclass.DrProfileHomeDataClass
+import com.chausat.drside.home.data.FeedbackDataClass
 import com.chausat.drside.home.data.UserDetailsDataClass
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -22,6 +23,10 @@ class MainActivityViewModel : ViewModel() {
 
     val getUserDetails: MutableLiveData<ArrayList<UserDetailsDataClass>> by lazy {
         MutableLiveData<ArrayList<UserDetailsDataClass>>()
+    }
+
+    val getFeedbackDetails: MutableLiveData<ArrayList<FeedbackDataClass>> by lazy {
+        MutableLiveData<ArrayList<FeedbackDataClass>>()
     }
 
 
@@ -73,6 +78,25 @@ class MainActivityViewModel : ViewModel() {
                     arrayListUser.add(value!!)
                 }
                 getUserDetails.value = arrayListUser
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
+    }
+
+    fun fetchFeedbackDetails() {
+        val firebaseDatabaseReference =
+            FirebaseDatabase.getInstance().getReference("userFeedback")
+
+        firebaseDatabaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val arrayListUser = ArrayList<FeedbackDataClass>()
+                for (snap in snapshot.children) {
+                    val value = snap.getValue(FeedbackDataClass::class.java)
+                    arrayListUser.add(value!!)
+                }
+                getFeedbackDetails.value = arrayListUser
             }
 
             override fun onCancelled(p0: DatabaseError) {

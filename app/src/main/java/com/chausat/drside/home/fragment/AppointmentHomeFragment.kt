@@ -1,7 +1,6 @@
 package com.chausat.drside.home.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,10 +33,11 @@ class AppointmentHomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        doctorViewModel.getUserDetails.observe(this, {
+        doctorViewModel.getUserDetails.observe(this, { arrayUserData ->
             recyclerViewAppointment.apply {
                 val appointmentRecyclerViewAdapter = AppointmentRecyclerViewAdapter()
-                appointmentRecyclerViewAdapter.fillUserDetails(it)
+                arrayUserData.sortByDescending { it.userId }
+                appointmentRecyclerViewAdapter.fillUserDetails(arrayUserData)
                 layoutManager = LinearLayoutManager(activity!!, RecyclerView.VERTICAL, false)
                 adapter = appointmentRecyclerViewAdapter
             }

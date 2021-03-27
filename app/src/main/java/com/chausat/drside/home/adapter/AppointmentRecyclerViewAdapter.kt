@@ -1,23 +1,22 @@
 package com.chausat.drside.home.adapter
 
+import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.constraintlayout.widget.Group
 import androidx.recyclerview.widget.RecyclerView
 import com.chausat.drside.R
 import com.chausat.drside.home.data.UserDetailsDataClass
 import com.google.android.material.button.MaterialButton
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class AppointmentRecyclerViewAdapter :
     RecyclerView.Adapter<AppointmentRecyclerViewAdapter.ViewHolder>() {
 
     private val arrayListAppointmentDetails = ArrayList<UserDetailsDataClass>()
-    private lateinit var databaseReference: DatabaseReference
 
     companion object {
         private const val TABLE_NAME = "appointmentDetails"
@@ -40,7 +39,26 @@ class AppointmentRecyclerViewAdapter :
         private val buttonCancelAppointment =
             itemView.findViewById<MaterialButton>(R.id.buttonCancelAppointment)
 
+        private val groupButtonAction = itemView.findViewById<Group>(R.id.groupButtonAction)
+        private val textViewApprovedStatus =
+            itemView.findViewById<AppCompatTextView>(R.id.textViewApprovedStatus)
+
         fun onBind(userData: UserDetailsDataClass) {
+            when (userData.approved) {
+                "approved" -> {
+                    groupButtonAction.visibility = View.GONE
+                    textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_approved)
+                }
+                "canceled" -> {
+                    groupButtonAction.visibility = View.GONE
+                    textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_canceled)
+                }
+                else -> {
+                    groupButtonAction.visibility = View.VISIBLE
+                    textViewApprovedStatus.visibility = View.GONE
+                }
+            }
+
             if (userData.gender == "Male") {
                 imageViewPatientProfile.setImageResource(R.drawable.male)
             } else {
@@ -52,13 +70,31 @@ class AppointmentRecyclerViewAdapter :
             textViewPatientAppointment.text = userData.appointmentTime
 
             buttonAcceptAppointment.setOnClickListener {
+                sendSms(userData.userContact, userData.appointmentTime, true)
                 setStatus(true, userData.userId)
+                groupButtonAction.visibility = View.GONE
+                textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_approved)
             }
 
             buttonCancelAppointment.setOnClickListener {
+                sendSms(userData.userContact, userData.appointmentTime, false)
                 setStatus(false, userData.userId)
+                groupButtonAction.visibility = View.GONE
+                textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_canceled)
             }
         }
+    }
+
+    private fun sendSms(userNumber: String, appointmentTime: String, isApproved: Boolean) {
+        val message = if (isApproved) {
+            "Your Appointment for Magnet Therapy is Approved.\nTime: $appointmentTime"
+        } else {
+            "Your Appointment for Magnet Therapy is Canceled.\nTime: $appointmentTime"
+        }
+        SmsManager.getDefault().sendTextMessage(
+            "$userNumber",
+            null, message, null, null
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -85,10 +121,12 @@ class AppointmentRecyclerViewAdapter :
     private fun setStatus(isApproved: Boolean, selectedId: Int) {
         val status = if (isApproved) {
             "approved"
-        }else{
-            "rejected"
+        } else {
+            "canceled"
         }
-        FirebaseDatabase.getInstance().reference.child(TABLE_NAME).child(selectedId.toString()).child(
-            APPROVED).setValue(status)
+        FirebaseDatabase.getInstance().reference.child(TABLE_NAME).child(selectedId.toString())
+            .child(
+                APPROVED
+            ).setValue(status)
     }
 }
