@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menuHome" android:title="@string/label_home" android:icon="@drawable/home"/>
+
+    <item android:id="@+id/menuMagnet" android:title="@string/magnet_details" android:icon="@drawable/magnet"/>
+
+    <item android:id="@+id/menuProspection" android:title="@string/label_prospection_services" android:icon="@drawable/service"/>
+
+    <item android:id="@+id/menuFeedback" android:title="@string/label_feedback" android:icon="@drawable/feedback"/>
+
+    <item android:id="@+id/menuAboutUs" android:title="@string/label_about_us" android:icon="@drawable/information"/>
+
+    <item android:id="@+id/menuContactUs" android:title="@string/label_contact_us" android:icon="@drawable/contact"/>
+
+    <group android:id="@+id/group1">
+
+        <item
+            android:id="@+id/menuLogout"
+            android:icon="@drawable/ic_logout"
+            android:title="@string/label_logout" />
+    </group>
+</menu>

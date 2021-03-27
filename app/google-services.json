@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "431007290966",
+    "firebase_url": "https://ohm-magnet-therapy-and-clinic-default-rtdb.firebaseio.com",
+    "project_id": "ohm-magnet-therapy-and-clinic",
+    "storage_bucket": "ohm-magnet-therapy-and-clinic.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431007290966:android:4d6588a7a1505121d98df7",
+        "android_client_info": {
+          "package_name": "com.chausat.drside"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431007290966-jm535gbj0qq2co3ksg36ejicqcukdkcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlBMgPIEXnraWD1OyWWpyu-WTxgrfttQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431007290966-jm535gbj0qq2co3ksg36ejicqcukdkcn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:431007290966:android:b820ec3e4f73b668d98df7",
+        "android_client_info": {
+          "package_name": "com.task.drapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "431007290966-jm535gbj0qq2co3ksg36ejicqcukdkcn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlBMgPIEXnraWD1OyWWpyu-WTxgrfttQY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "431007290966-jm535gbj0qq2co3ksg36ejicqcukdkcn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/dimen_20dp"
+    android:layout_marginTop="@dimen/dimen_20dp"
+    app:cardCornerRadius="@dimen/dimen_10dp"
+    app:cardElevation="@dimen/dimen_2dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/dimen_10dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewPatientProfile"
+            android:layout_width="@dimen/dimen_80dp"
+            android:layout_height="@dimen/dimen_80dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/male" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientNameText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_patient_name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imageViewPatientProfile"
+            app:layout_constraintTop_toTopOf="@id/imageViewPatientProfile" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientNameText"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientNameText"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientNameText"
+            tools:text="Keval Shah" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientContactText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_6dp"
+            android:text="@string/label_contact_number"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientNameText"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientNameText"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientName" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientContact"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientContactText"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientContactText"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientContactText"
+            tools:text="9879246691" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientAppointmentText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_6dp"
+            android:text="@string/label_appointment_time"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientContactText"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientContactText"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientContact" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientAppointment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientAppointmentText"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientAppointmentText"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointmentText"
+            tools:text="4:00 PM To 4:15 PM" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonAcceptAppointment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:layout_marginEnd="@dimen/dimen_5dp"
+            android:backgroundTint="@color/mainColor"
+            android:text="@string/button_accept"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/buttonCancelAppointment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointment" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonCancelAppointment"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dimen_5dp"
+            android:text="@string/button_cancel"
+            android:textColor="@color/mainColor"
+            app:layout_constraintBottom_toBottomOf="@id/buttonAcceptAppointment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/buttonAcceptAppointment"
+            app:layout_constraintTop_toTopOf="@id/buttonAcceptAppointment" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
