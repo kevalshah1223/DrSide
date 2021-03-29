@@ -21,6 +21,8 @@ import com.chausat.drside.ServiceChecker
 import com.chausat.drside.base.BaseActivity
 import com.chausat.drside.home.fragment.AppointmentHomeFragment
 import com.chausat.drside.home.fragment.FeedbackHomeFragment
+import com.chausat.drside.home.fragment.MagnetDetailsHomeFragment
+import com.chausat.drside.home.fragment.ProspectionServicesHomeFragment
 import com.chausat.drside.viewmodel.MainActivityViewModel
 import com.google.android.material.navigation.NavigationView
 import com.gun0912.tedpermission.PermissionListener
@@ -131,6 +133,22 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
             R.id.menuLogout -> {
                 logout()
+            }
+
+            R.id.menuMagnet -> {
+                openFragment(
+                    fragment = MagnetDetailsHomeFragment(),
+                    isReplace = true,
+                    isBackStack = true
+                )
+            }
+
+            R.id.menuProspection -> {
+                openFragment(
+                    fragment = ProspectionServicesHomeFragment(),
+                    isReplace = true,
+                    isBackStack = true
+                )
             }
         }
         drawerLayoutMain.closeDrawer(GravityCompat.START, true)

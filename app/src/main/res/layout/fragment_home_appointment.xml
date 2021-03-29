@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".home.fragment.AppointmentHomeFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -22,14 +23,14 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewAppointment"
-        tools:listitem="@layout/item_appointment_details"
         android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clipToPadding="false"
         android:paddingBottom="@dimen/dimen_20dp"
-        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textViewAppointmentText" />
+        app:layout_constraintTop_toBottomOf="@id/textViewAppointmentText"
+        tools:listitem="@layout/item_appointment_details" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

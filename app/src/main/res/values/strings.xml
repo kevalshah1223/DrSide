@@ -26,4 +26,8 @@
     <string name="label_feedback">Feedback</string>
     <string name="label_subject">Subject:</string>
     <string name="label_message">Message:</string>
+    <string name="label_why_this_therapy">Why This Therapy?</string>
+    <string name="label_gujarati">ગુજરાતી</string>
+    <string name="label_english">English</string>
+    <string name="label_edit">Edit</string>
 </resources>
