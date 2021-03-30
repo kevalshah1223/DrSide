@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">OHM Magnet Therapy - Admin</string>
     <string name="label_login_here">Login Here</string>
     <string name="hint_enter_phone_number">Enter Phone Number</string>
@@ -20,7 +20,7 @@
     <string name="label_contact_number">Contact Number</string>
     <string name="label_appointment_time">Appointment Time:</string>
     <string name="button_accept">accept</string>
-    <string name="button_cancel">cancel</string>
+    <string name="button_cancel" tools:ignore="ButtonCase">cancel</string>
     <string name="label_appointment_approved">Appointment Approved</string>
     <string name="label_appointment_canceled">Appointment Canceled</string>
     <string name="label_feedback">Feedback</string>
@@ -30,4 +30,7 @@
     <string name="label_gujarati">ગુજરાતી</string>
     <string name="label_english">English</string>
     <string name="label_edit">Edit</string>
+    <string name="label_why_prospection_eng">How it works?</string>
+    <string name="label_why_prospection_guj">કેવી રીતે સારવાર થાય છે ?</string>
+
 </resources>
