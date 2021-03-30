@@ -19,10 +19,7 @@ import com.chausat.drside.Logout
 import com.chausat.drside.R
 import com.chausat.drside.ServiceChecker
 import com.chausat.drside.base.BaseActivity
-import com.chausat.drside.home.fragment.AppointmentHomeFragment
-import com.chausat.drside.home.fragment.FeedbackHomeFragment
-import com.chausat.drside.home.fragment.MagnetDetailsHomeFragment
-import com.chausat.drside.home.fragment.ProspectionServicesHomeFragment
+import com.chausat.drside.home.fragment.*
 import com.chausat.drside.viewmodel.MainActivityViewModel
 import com.google.android.material.navigation.NavigationView
 import com.gun0912.tedpermission.PermissionListener
@@ -41,6 +38,8 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
     private lateinit var imageViewDrawerLogout: AppCompatImageView
     private lateinit var navigationView: NavigationView
     private lateinit var doctorViewModel: MainActivityViewModel
+    lateinit var textViewToolBarTitle: AppCompatTextView
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +71,8 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
         imageViewMainDrawer = findViewById(R.id.imageViewMainDrawer)
         imageViewDrawerLogout = findViewById(R.id.imageViewDrawerLogout)
         navigationView = findViewById(R.id.navigationView)
+        textViewToolBarTitle = findViewById(R.id.textViewToolBarTitle)
+
 
         val handler = Handler(Looper.myLooper()!!)
         handler.postDelayed(object : Runnable {
@@ -146,6 +147,14 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
             R.id.menuProspection -> {
                 openFragment(
                     fragment = ProspectionServicesHomeFragment(),
+                    isReplace = true,
+                    isBackStack = true
+                )
+            }
+
+            R.id.menuAboutUs -> {
+                openFragment(
+                    fragment = AboutUsHomeFragment(),
                     isReplace = true,
                     isBackStack = true
                 )

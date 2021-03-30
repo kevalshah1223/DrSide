@@ -30,7 +30,9 @@
     <string name="label_gujarati">ગુજરાતી</string>
     <string name="label_english">English</string>
     <string name="label_edit">Edit</string>
+    <string name="label_edit_gujju">સંપાદિત કરો</string>
     <string name="label_why_prospection_eng">How it works?</string>
     <string name="label_why_prospection_guj">કેવી રીતે સારવાર થાય છે ?</string>
+    <string name="label_prospection">Prospection Service</string>
 
 </resources>

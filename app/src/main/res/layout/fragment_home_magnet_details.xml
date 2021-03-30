@@ -7,19 +7,5 @@
     android:layout_height="match_parent"
     tools:context=".home.fragment.MagnetDetailsHomeFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/textViewMagnetDetailsText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/mainColor"
-        android:gravity="center"
-        android:paddingVertical="@dimen/dimen_10dp"
-        android:text="@string/magnet_details"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

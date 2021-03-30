@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chausat.drside.R
 import com.chausat.drside.base.BaseFragment
+import com.chausat.drside.home.HomeMainActivity
 import com.chausat.drside.home.adapter.AppointmentRecyclerViewAdapter
 import com.chausat.drside.viewmodel.MainActivityViewModel
 
@@ -33,6 +34,9 @@ class AppointmentHomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+
+        val toolbar = (activity as HomeMainActivity).textViewToolBarTitle
+        toolbar.text = resources.getString(R.string.label_appointment)
         doctorViewModel.getUserDetails.observe(this, { arrayUserData ->
             recyclerViewAppointment.apply {
                 val appointmentRecyclerViewAdapter = AppointmentRecyclerViewAdapter()

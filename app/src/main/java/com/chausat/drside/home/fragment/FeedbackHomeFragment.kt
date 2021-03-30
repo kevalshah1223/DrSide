@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chausat.drside.R
 import com.chausat.drside.base.BaseFragment
+import com.chausat.drside.home.HomeMainActivity
 import com.chausat.drside.home.adapter.FeedbackRecyclerViewAdapter
 import com.chausat.drside.viewmodel.MainActivityViewModel
 
@@ -35,6 +36,11 @@ class FeedbackHomeFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
+
+        val toolbar = (activity as HomeMainActivity).textViewToolBarTitle
+        toolbar.text = resources.getString(R.string.label_feedback)
+
+
         doctorViewModel.getFeedbackDetails.observe(this, { arrayFeedbackData ->
 
             Log.d("FEEDBACK", "onResume: $arrayFeedbackData")

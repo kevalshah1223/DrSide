@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chausat.drside.R
+import com.chausat.drside.home.HomeMainActivity
 
 class MagnetDetailsHomeFragment : Fragment() {
 
@@ -16,6 +17,12 @@ class MagnetDetailsHomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val toolbar = (activity as HomeMainActivity).textViewToolBarTitle
+        toolbar.text = resources.getString(R.string.magnet_details)
     }
 
 }
