@@ -13,4 +13,11 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Custom.EditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="boxStrokeColor">@color/mainColor</item>
+        <item name="hintTextColor">@color/mainColor</item>
+    </style>
+
 </resources>

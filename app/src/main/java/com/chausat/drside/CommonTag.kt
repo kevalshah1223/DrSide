@@ -15,4 +15,8 @@ object CommonTag {
     const val personalDetails = "personal_details"
     const val aboutUsEnglish = "about_eng"
     const val aboutUsGujarati = "about_gujju"
+
+    const val editSuccessRequestCode = 100
+
+    const val doctorDetails = "DOCTOR_DETAILS"
 }

@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
     <application
         android:allowBackup="true"
@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrSide">
-        <activity android:name=".home.HomeMainActivity"/>
+        <activity android:name=".home.fragment.EditProfileActivity"></activity>
+        <activity android:name=".home.HomeMainActivity" />
         <activity android:name=".authentication.AuthMainActivity" />
         <activity android:name=".splash.SplashActivity">
             <intent-filter>

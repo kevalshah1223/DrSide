@@ -106,7 +106,8 @@
                 app:cardElevation="@dimen/dimen_2dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewDrName">
+                app:layout_constraintTop_toBottomOf="@id/textViewDrName"
+                tools:targetApi="lollipop">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/textViewDrContactNumber"
@@ -120,7 +121,8 @@
                     android:text="@string/label_dr_phone_91_7016244301"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/mainColor"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:targetApi="m" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -160,7 +162,6 @@
                 android:translationZ="@dimen/dimen_2dp"
                 app:cardCornerRadius="@dimen/dimen_5dp"
                 app:cardElevation="@dimen/dimen_2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/cardViewMail"
                 app:layout_constraintStart_toStartOf="@id/cardViewMail"
                 app:layout_constraintTop_toBottomOf="@id/cardViewMail">
@@ -181,11 +182,12 @@
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/buttonEditProfile"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_10dp"
                 android:layout_marginBottom="@dimen/dimen_20dp"
-                android:text="Edit Profile"
+                android:text="@string/label_edit_profile"
                 android:textAllCaps="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardViewAddress" />
