@@ -159,6 +159,14 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
                     isBackStack = true
                 )
             }
+
+            R.id.menuContactUs -> {
+                openFragment(
+                    fragment = ContactUsHomeFragment(),
+                    isReplace = true,
+                    isBackStack = true
+                )
+            }
         }
         drawerLayoutMain.closeDrawer(GravityCompat.START, true)
         return true

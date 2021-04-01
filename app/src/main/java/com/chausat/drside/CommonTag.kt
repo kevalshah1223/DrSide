@@ -13,6 +13,6 @@ object CommonTag {
     const val prospectionAboutWhyGujarati = "why_guj"
 
     const val personalDetails = "personal_details"
-    const val aboutUsEnglish = "why_eng"
-    const val aboutUsGujarati = "why_guj"
+    const val aboutUsEnglish = "about_eng"
+    const val aboutUsGujarati = "about_gujju"
 }
