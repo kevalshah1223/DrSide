@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.chausat.drside.CommonTag
 import com.chausat.drside.R
+import com.chausat.drside.home.HomeMainActivity
 import com.chausat.drside.viewmodel.MainActivityViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
@@ -31,6 +32,14 @@ class AboutUsHomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolTitle = (activity as HomeMainActivity).textViewToolBarTitle
+        toolTitle.text = activity!!.getText(R.string.label_about_us)
+        val toolImage = (activity as HomeMainActivity).imageViewMainDrawer
+        toolImage.setImageResource(R.drawable.ic_menu)
+        toolImage.setOnClickListener {
+            (activity as HomeMainActivity).openDrawer()
+        }
 
         doctorViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         doctorViewModel.fetchDoctorDetails()

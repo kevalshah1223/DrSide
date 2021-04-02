@@ -9,6 +9,13 @@ object CommonTag {
     const val prospectionAboutEnglish = "about_eng"
     const val prospectionAboutGujarati = "about_guj"
 
+    const val magnetTherapy = "magnet_therapy"
+    const val magnetAboutEnglish = "about_eng"
+    const val magnetAboutGujarati = "about_guj"
+
+    const val magnetWhyEnglish = "why_eng"
+    const val magnetWhyGujarati = "why_guj"
+
     const val prospectionAboutWhyEnglish = "why_eng"
     const val prospectionAboutWhyGujarati = "why_guj"
 
@@ -19,4 +26,6 @@ object CommonTag {
     const val editSuccessRequestCode = 100
 
     const val doctorDetails = "DOCTOR_DETAILS"
+
+    const val imageSuccessRequestCode = 200
 }

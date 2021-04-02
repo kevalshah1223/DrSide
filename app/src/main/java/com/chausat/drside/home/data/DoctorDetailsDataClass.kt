@@ -9,6 +9,7 @@ data class DoctorDetailsDataClass(
     var contact_number: String,
     var email: String,
     var address: String,
+    var profile_image: String
 ) : Parcelable {
-    constructor() : this("", "", "", "")
+    constructor() : this("", "", "", "", "")
 }

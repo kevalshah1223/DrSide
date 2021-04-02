@@ -37,6 +37,11 @@ class AppointmentHomeFragment : BaseFragment() {
 
         val toolbar = (activity as HomeMainActivity).textViewToolBarTitle
         toolbar.text = resources.getString(R.string.label_appointment)
+        val toolImage = (activity as HomeMainActivity).imageViewMainDrawer
+        toolImage.setImageResource(R.drawable.ic_menu)
+        toolImage.setOnClickListener {
+            (activity as HomeMainActivity).openDrawer()
+        }
         doctorViewModel.getUserDetails.observe(this, { arrayUserData ->
             recyclerViewAppointment.apply {
                 val appointmentRecyclerViewAdapter = AppointmentRecyclerViewAdapter()

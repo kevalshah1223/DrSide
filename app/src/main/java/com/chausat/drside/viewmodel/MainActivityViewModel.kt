@@ -4,10 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.chausat.drside.dataclass.CredentialInfo
 import com.chausat.drside.dataclass.DrProfileHomeDataClass
-import com.chausat.drside.home.data.DoctorDataCLass
-import com.chausat.drside.home.data.FeedbackDataClass
-import com.chausat.drside.home.data.ProspectionServicesDataClass
-import com.chausat.drside.home.data.UserDetailsDataClass
+import com.chausat.drside.home.data.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -173,6 +170,31 @@ class MainActivityViewModel : ViewModel() {
 
             override fun onCancelled(error: DatabaseError) {
             }
+        })
+    }
+
+    val getMagnetTherapyImages: MutableLiveData<ArrayList<String>> by lazy {
+        MutableLiveData<ArrayList<String>>()
+    }
+
+    fun fetchMagnetTherapyDetails() {
+        val firebaseDatabaseReference =
+            FirebaseDatabase.getInstance().getReference("magnet_therapy")
+
+        firebaseDatabaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                val magnetTherapyData = snapshot.getValue(MagnetTherapyDataClass::class.java)
+                getLangAboutMagnetTherapy.value =
+                    arrayListOf(magnetTherapyData!!.about_eng, magnetTherapyData.about_guj,magnetTherapyData.why_eng, magnetTherapyData.why_guj)
+
+                magnetTherapyData.let {
+                    getMagnetTherapyImages.value = it.images
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
         })
     }
 }

@@ -39,8 +39,11 @@ class FeedbackHomeFragment : BaseFragment() {
 
         val toolbar = (activity as HomeMainActivity).textViewToolBarTitle
         toolbar.text = resources.getString(R.string.label_feedback)
-
-
+        val toolImage = (activity as HomeMainActivity).imageViewMainDrawer
+        toolImage.setImageResource(R.drawable.ic_menu)
+        toolImage.setOnClickListener {
+            (activity as HomeMainActivity).openDrawer()
+        }
         doctorViewModel.getFeedbackDetails.observe(this, { arrayFeedbackData ->
 
             Log.d("FEEDBACK", "onResume: $arrayFeedbackData")

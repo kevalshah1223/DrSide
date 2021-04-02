@@ -34,7 +34,7 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var drawerLayoutMain: DrawerLayout
-    private lateinit var imageViewMainDrawer: AppCompatImageView
+    lateinit var imageViewMainDrawer: AppCompatImageView
     private lateinit var imageViewDrawerLogout: AppCompatImageView
     private lateinit var navigationView: NavigationView
     private lateinit var doctorViewModel: MainActivityViewModel
@@ -175,7 +175,7 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
     override fun onClick(v: View?) {
         when (v!!.id) {
             R.id.imageViewMainDrawer -> {
-                drawerLayoutMain.openDrawer(GravityCompat.START, true)
+                openDrawer()
             }
 
             R.id.imageViewDrawerLogout -> {
@@ -186,5 +186,9 @@ class HomeMainActivity : BaseActivity(), NavigationView.OnNavigationItemSelected
 
     private fun logout() {
         Logout.logout(this)
+    }
+
+    fun openDrawer() {
+        drawerLayoutMain.openDrawer(GravityCompat.START, true)
     }
 }

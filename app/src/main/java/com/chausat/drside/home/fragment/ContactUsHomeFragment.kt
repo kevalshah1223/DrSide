@@ -53,7 +53,11 @@ class ContactUsHomeFragment : Fragment() {
 
         val toolbar = (activity as HomeMainActivity).textViewToolBarTitle
         toolbar.text = getString(R.string.label_contact_us)
-
+        val toolImage = (activity as HomeMainActivity).imageViewMainDrawer
+        toolImage.setImageResource(R.drawable.ic_menu)
+        toolImage.setOnClickListener {
+            (activity as HomeMainActivity).openDrawer()
+        }
         doctorViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
         doctorViewModel.fetchDoctorDetails()
 
@@ -62,6 +66,8 @@ class ContactUsHomeFragment : Fragment() {
             doctorDetailsDataClass.email = it.email
             doctorDetailsDataClass.contact_number = it.contact_number
             doctorDetailsDataClass.address = it.address
+            doctorDetailsDataClass.profile_image = it.profile_image
+
             Glide.with(view.context).load(it.profile_image).into(imageViewDrImage)
             textViewDrName.text = it.name
             textViewDrContactNumber.text = it.contact_number
@@ -97,6 +103,7 @@ class ContactUsHomeFragment : Fragment() {
             firebase.child("contact_number").setValue(docDetails.contact_number)
             firebase.child("email").setValue(docDetails.email)
             firebase.child("address").setValue(docDetails.address)
+            firebase.child("profile_image").setValue(docDetails.profile_image)
         }
     }
 

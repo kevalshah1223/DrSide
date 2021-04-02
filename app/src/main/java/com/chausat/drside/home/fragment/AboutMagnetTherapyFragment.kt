@@ -18,46 +18,46 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.firebase.database.FirebaseDatabase
 
-class ProspectionServicesHomeFragment : Fragment() {
+class AboutMagnetTherapyFragment : Fragment() {
 
-    lateinit var prospectionViewModel: MainActivityViewModel
+    lateinit var magnetViewModel: MainActivityViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_home_prospection_services, container, false)
+        return inflater.inflate(R.layout.fragment_about_magnet_therapy, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         val toolbar = (activity as HomeMainActivity).textViewToolBarTitle
-        toolbar.text = resources.getString(R.string.label_prospection)
+        toolbar.text = resources.getString(R.string.label_about_magnet_therapy)
         val toolImage = (activity as HomeMainActivity).imageViewMainDrawer
-        toolImage.setImageResource(R.drawable.ic_menu)
+        toolImage.setImageResource(R.drawable.ic_back_arrow)
+
         toolImage.setOnClickListener {
-            (activity as HomeMainActivity).openDrawer()
+            activity!!.onBackPressed()
         }
+
+        magnetViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
+        magnetViewModel.fetchMagnetTherapyDetails()
+
         val toggleButtonLanguage =
             view.findViewById<MaterialButtonToggleGroup>(R.id.toggleButtonLanguage)
-        val textViewAboutProspectionServiceData =
-            view.findViewById<AppCompatTextView>(R.id.textViewAboutProspectionServiceData)
+        val textViewAboutMagnetTherapyData =
+            view.findViewById<AppCompatTextView>(R.id.textViewAboutMagnetTherapyData)
         val buttonEnglish = view.findViewById<MaterialButton>(R.id.buttonEnglish)
-        val buttonGujarati = view.findViewById<MaterialButton>(R.id.buttonGujarati)
         val textViewWhyTherapyText =
             view.findViewById<AppCompatTextView>(R.id.textViewWhyTherapyText)
         val textViewWhyTherapy = view.findViewById<AppCompatTextView>(R.id.textViewWhyTherapy)
 
-        val buttonEditProspectionTop =
-            view.findViewById<MaterialButton>(R.id.buttonEditProspectionTop)
-        val buttonEditProspectionBottom =
-            view.findViewById<MaterialButton>(R.id.buttonEditProspectionBottom)
-
-        prospectionViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
-        prospectionViewModel.fetchProspectionServicesDetails()
-
+        val buttonAboutMagnetEdit =
+            view.findViewById<MaterialButton>(R.id.buttonAboutMagnetEdit)
+        val buttonWhyMagnetEdit =
+            view.findViewById<MaterialButton>(R.id.buttonWhyMagnetEdit)
 
         buttonEnglish.isChecked = true
         var english = ""
@@ -65,9 +65,9 @@ class ProspectionServicesHomeFragment : Fragment() {
 
         var why_english = ""
         var why_gujju = ""
-
-        prospectionViewModel.getLangAboutMagnetTherapy.observe(this, {
-            textViewAboutProspectionServiceData.text = it[0]
+        textViewWhyTherapy.text = view.context.getString(R.string.label_why_this_therapy)
+        magnetViewModel.getLangAboutMagnetTherapy.observe(this, {
+            textViewAboutMagnetTherapyData.text = it[0]
             textViewWhyTherapyText.text = it[2]
             english = it[0]
             gujju = it[1]
@@ -79,43 +79,41 @@ class ProspectionServicesHomeFragment : Fragment() {
             when (checkedId) {
                 R.id.buttonEnglish -> {
                     if (isChecked) {
-                        textViewAboutProspectionServiceData.text = english
+                        textViewAboutMagnetTherapyData.text = english
                         textViewWhyTherapy.text =
-                            view.context.getString(R.string.label_why_prospection_eng)
+                            view.context.getString(R.string.label_why_this_therapy)
                         textViewWhyTherapyText.text = why_english
-                        buttonEditProspectionTop.text = resources.getString(R.string.label_edit)
-                        buttonEditProspectionBottom.text = resources.getString(R.string.label_edit)
+                        buttonAboutMagnetEdit.text = resources.getString(R.string.label_edit)
                     }
                 }
 
                 R.id.buttonGujarati -> {
                     if (isChecked) {
-                        textViewAboutProspectionServiceData.text = gujju
+                        textViewAboutMagnetTherapyData.text = gujju
                         textViewWhyTherapy.text =
-                            view.context.getString(R.string.label_why_prospection_guj)
+                            view.context.getString(R.string.label_why_this_therapy_guj)
                         textViewWhyTherapyText.text = why_gujju
-                        buttonEditProspectionTop.text =
-                            resources.getString(R.string.label_edit_gujju)
-                        buttonEditProspectionBottom.text = resources.getString(R.string.label_edit_gujju)
+                        buttonAboutMagnetEdit.text = resources.getString(R.string.label_edit_gujju)
                     }
                 }
             }
         }
 
         val builder = AlertDialog.Builder(activity!!)
-
-        buttonEditProspectionTop.setOnClickListener {
+        buttonAboutMagnetEdit.setOnClickListener {
             val view =
                 activity!!.layoutInflater.inflate(R.layout.dialog_prospection_english, null)
+
             val editTextProspectionEnglishTop =
                 view.findViewById<AppCompatEditText>(R.id.editTextProspectionEnglishTop)
+
             if (buttonEnglish.isChecked) {
                 builder.setView(view)
                     .setPositiveButton(R.string.label_edit) { dialog, _ ->
                         dialog.dismiss()
-                        isProspectionTopEnglish(editTextProspectionEnglishTop.text.toString(), true)
+                        isMagnetTopEnglish(editTextProspectionEnglishTop.text.toString(), true)
                     }
-                editTextProspectionEnglishTop.setText(textViewAboutProspectionServiceData.text)
+                editTextProspectionEnglishTop.setText(textViewAboutMagnetTherapyData.text)
                 builder.create().show()
 
             } else {
@@ -124,57 +122,61 @@ class ProspectionServicesHomeFragment : Fragment() {
                         R.string.label_edit_gujju
                     ) { dialog, _ ->
                         dialog.dismiss()
-                        isProspectionTopEnglish(
+                        isMagnetTopEnglish(
                             editTextProspectionEnglishTop.text.toString(),
                             false
                         )
                         buttonEnglish.isChecked = true
                     }
                 view.findViewById<AppCompatEditText>(R.id.editTextProspectionEnglishTop)
-                    .setText(textViewAboutProspectionServiceData.text)
+                    .setText(textViewAboutMagnetTherapyData.text)
                 builder.create().show()
             }
         }
 
-        buttonEditProspectionBottom.setOnClickListener {
+
+        buttonWhyMagnetEdit.setOnClickListener {
             val view =
                 activity!!.layoutInflater.inflate(R.layout.dialog_prospection_english, null)
+
             val editTextProspectionEnglishTop =
                 view.findViewById<AppCompatEditText>(R.id.editTextProspectionEnglishTop)
+
             if (buttonEnglish.isChecked) {
                 builder.setView(view)
                     .setPositiveButton(R.string.label_edit) { dialog, _ ->
                         dialog.dismiss()
-                        isProspectionBottomEnglish(editTextProspectionEnglishTop.text.toString(), true)
+                        isMagnetBottomEnglish(editTextProspectionEnglishTop.text.toString(), true)
                     }
+                editTextProspectionEnglishTop.setText(textViewWhyTherapyText.text)
+                builder.create().show()
+
             } else {
                 builder.setView(view)
                     .setPositiveButton(
                         R.string.label_edit_gujju
                     ) { dialog, _ ->
                         dialog.dismiss()
-                        isProspectionBottomEnglish(
-                            editTextProspectionEnglishTop.text.toString(),
-                            false
-                        )
+                        isMagnetBottomEnglish(editTextProspectionEnglishTop.text.toString(), true)
                         buttonEnglish.isChecked = true
                     }
+                view.findViewById<AppCompatEditText>(R.id.editTextProspectionEnglishTop)
+                    .setText(textViewWhyTherapyText.text)
+                builder.create().show()
             }
-            editTextProspectionEnglishTop.setText(textViewWhyTherapyText.text)
-            builder.create().show()
         }
     }
 
-    private fun isProspectionBottomEnglish(newText: String, isEnglish: Boolean) {
+    private fun isMagnetBottomEnglish(newText: String, isEnglish: Boolean) {
         val firebaseDatabase =
-            FirebaseDatabase.getInstance().getReference(CommonTag.prospectionService)
+            FirebaseDatabase.getInstance().getReference(CommonTag.magnetTherapy)
         if (isEnglish) {
-            firebaseDatabase.child(CommonTag.prospectionAboutWhyEnglish).setValue(newText)
+            firebaseDatabase.child(CommonTag.magnetWhyEnglish).setValue(newText)
                 .addOnSuccessListener {
                     Toast.makeText(activity!!, "Updated Successfully", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            firebaseDatabase.child(CommonTag.prospectionAboutWhyGujarati).setValue(newText)
+            firebaseDatabase.child(CommonTag.magnetWhyGujarati).setValue(newText)
                 .addOnSuccessListener {
                     Toast.makeText(activity!!, "સફળતાપૂર્વક અપડેટ કર્યું", Toast.LENGTH_SHORT)
                         .show()
@@ -182,16 +184,16 @@ class ProspectionServicesHomeFragment : Fragment() {
         }
     }
 
-    private fun isProspectionTopEnglish(newText: String, isEnglish: Boolean) {
+    private fun isMagnetTopEnglish(newText: String, isEnglish: Boolean) {
         val firebaseDatabase =
-            FirebaseDatabase.getInstance().getReference(CommonTag.prospectionService)
+            FirebaseDatabase.getInstance().getReference(CommonTag.magnetTherapy)
         if (isEnglish) {
-            firebaseDatabase.child(CommonTag.prospectionAboutEnglish).setValue(newText)
+            firebaseDatabase.child(CommonTag.magnetAboutEnglish).setValue(newText)
                 .addOnSuccessListener {
                     Toast.makeText(activity!!, "Updated Successfully", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            firebaseDatabase.child(CommonTag.prospectionAboutGujarati).setValue(newText)
+            firebaseDatabase.child(CommonTag.magnetAboutGujarati).setValue(newText)
                 .addOnSuccessListener {
                     Toast.makeText(activity!!, "સફળતાપૂર્વક અપડેટ કર્યું", Toast.LENGTH_SHORT)
                         .show()
