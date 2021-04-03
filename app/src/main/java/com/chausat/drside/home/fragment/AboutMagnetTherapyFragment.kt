@@ -157,7 +157,7 @@ class AboutMagnetTherapyFragment : Fragment() {
                         R.string.label_edit_gujju
                     ) { dialog, _ ->
                         dialog.dismiss()
-                        isMagnetBottomEnglish(editTextProspectionEnglishTop.text.toString(), true)
+                        isMagnetBottomEnglish(editTextProspectionEnglishTop.text.toString(), false)
                         buttonEnglish.isChecked = true
                     }
                 view.findViewById<AppCompatEditText>(R.id.editTextProspectionEnglishTop)
@@ -176,7 +176,7 @@ class AboutMagnetTherapyFragment : Fragment() {
                     Toast.makeText(activity!!, "Updated Successfully", Toast.LENGTH_SHORT).show()
                 }
         } else {
-            firebaseDatabase.child(CommonTag.magnetWhyGujarati).setValue(newText)
+            firebaseDatabase.child("CommonTag.magnetWhyGujarati").setValue(newText)
                 .addOnSuccessListener {
                     Toast.makeText(activity!!, "સફળતાપૂર્વક અપડેટ કર્યું", Toast.LENGTH_SHORT)
                         .show()
