@@ -50,5 +50,11 @@
     <string name="label_about_magnet_therapy">About Magnet Therapy</string>
     <string name="label_add_magnet_images">Add Magnet Images</string>
     <string name="label_add_image">Add Image</string>
+    <string name="hint_appointment_date">Appointment Date:</string>
+    <string name="hint_note">Note:</string>
+    <string name="label_click_to_add_note">Click to add Note.</string>
+    <string name="label_add_note">Add Note:</string>
+    <string name="hint_enter_note">enter note</string>
+    <string name="button_add_note">Add Note</string>
 
 </resources>

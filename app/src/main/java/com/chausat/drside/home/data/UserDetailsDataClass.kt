@@ -5,6 +5,7 @@ data class UserDetailsDataClass(
     val userName: String,
     val userContact: String,
     val appointmentTime: String,
+    val appointmentDate: String,
     val gender: String,
     val approved: String
 ) {
@@ -13,6 +14,7 @@ data class UserDetailsDataClass(
         userName = "",
         userContact = "",
         appointmentTime = "",
+        appointmentDate = "",
         gender = "",
         approved = ""
     )

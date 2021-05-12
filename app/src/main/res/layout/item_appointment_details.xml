@@ -87,6 +87,50 @@
             app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointmentText"
             tools:text="4:00 PM To 4:15 PM" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientAppointmentDateText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_6dp"
+            android:text="@string/hint_appointment_date"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientAppointment"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientAppointment"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointment" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientAppointmentDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientAppointmentDateText"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientAppointmentDateText"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointmentDateText"
+            tools:text="12 May, 2021" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientAppointmentNoteText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_6dp"
+            android:text="@string/hint_note"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientAppointmentDate"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientAppointmentDate"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointmentDate" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewPatientAppointmentNote"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="@id/textViewPatientAppointmentNoteText"
+            app:layout_constraintStart_toStartOf="@id/textViewPatientAppointmentNoteText"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointmentNoteText"
+            android:text="@string/label_click_to_add_note" />
+
         <androidx.constraintlayout.widget.Group
             android:id="@+id/groupButtonAction"
             android:layout_width="wrap_content"
@@ -106,7 +150,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointment"
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointmentNote"
             tools:text="Appointment Approved" />
 
         <com.google.android.material.button.MaterialButton
@@ -120,7 +164,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/buttonCancelAppointment"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointment" />
+            app:layout_constraintTop_toBottomOf="@id/textViewPatientAppointmentNote" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonCancelAppointment"

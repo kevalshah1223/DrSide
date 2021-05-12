@@ -1,9 +1,14 @@
 package com.chausat.drside.home.adapter
 
+import android.app.Dialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.telephony.SmsManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.constraintlayout.widget.Group
@@ -32,6 +37,8 @@ class AppointmentRecyclerViewAdapter :
             itemView.findViewById<AppCompatTextView>(R.id.textViewPatientContact)
         private val textViewPatientAppointment =
             itemView.findViewById<AppCompatTextView>(R.id.textViewPatientAppointment)
+        private val textViewPatientAppointmentDate =
+            itemView.findViewById<AppCompatTextView>(R.id.textViewPatientAppointmentDate)
         private val imageViewPatientProfile =
             itemView.findViewById<AppCompatImageView>(R.id.imageViewPatientProfile)
         private val buttonAcceptAppointment =
@@ -43,15 +50,20 @@ class AppointmentRecyclerViewAdapter :
         private val textViewApprovedStatus =
             itemView.findViewById<AppCompatTextView>(R.id.textViewApprovedStatus)
 
+        private val textViewPatientAppointmentNote =
+            itemView.findViewById<AppCompatTextView>(R.id.textViewPatientAppointmentNote)
+
         fun onBind(userData: UserDetailsDataClass) {
             when (userData.approved) {
                 "approved" -> {
                     groupButtonAction.visibility = View.GONE
-                    textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_approved)
+                    textViewApprovedStatus.text =
+                        itemView.context.getString(R.string.label_appointment_approved)
                 }
                 "canceled" -> {
                     groupButtonAction.visibility = View.GONE
-                    textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_canceled)
+                    textViewApprovedStatus.text =
+                        itemView.context.getString(R.string.label_appointment_canceled)
                 }
                 else -> {
                     groupButtonAction.visibility = View.VISIBLE
@@ -68,28 +80,69 @@ class AppointmentRecyclerViewAdapter :
             textViewPatientName.text = userData.userName
             textViewPatientContact.text = userData.userContact
             textViewPatientAppointment.text = userData.appointmentTime
-
+            textViewPatientAppointmentDate.text = userData.appointmentDate
             buttonAcceptAppointment.setOnClickListener {
-                sendSms(userData.userName,userData.userContact, userData.appointmentTime, true)
+                sendSms(
+                    userData.userName,
+                    userData.userContact,
+                    userData.appointmentTime,
+                    userData.appointmentTime,
+                    true
+                )
                 setStatus(true, userData.userId)
                 groupButtonAction.visibility = View.GONE
-                textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_approved)
+                textViewApprovedStatus.text =
+                    itemView.context.getString(R.string.label_appointment_approved)
             }
 
             buttonCancelAppointment.setOnClickListener {
-                sendSms(userData.userName,userData.userContact, userData.appointmentTime, false)
+                sendSms(
+                    userData.userName,
+                    userData.userContact,
+                    userData.appointmentTime,
+                    userData.appointmentTime,
+                    false
+                )
                 setStatus(false, userData.userId)
                 groupButtonAction.visibility = View.GONE
-                textViewApprovedStatus.text = itemView.context.getString(R.string.label_appointment_canceled)
+                textViewApprovedStatus.text =
+                    itemView.context.getString(R.string.label_appointment_canceled)
+            }
+
+            textViewPatientAppointmentNote.setOnClickListener {
+                val dialog = Dialog(itemView.context)
+                dialog.setContentView(R.layout.custom_dialog_add_note)
+                dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.findViewById<MaterialButton>(R.id.buttonAddNote).setOnClickListener {
+                    val note = dialog.findViewById<AppCompatEditText>(R.id.editTextNote).text
+
+                    if(note.isNullOrEmpty()){
+                        Toast.makeText(itemView.context, "Please enter note", Toast.LENGTH_SHORT)
+                            .show()
+                    }else {
+                        FirebaseDatabase.getInstance().getReference("appointmentDetails").child(userData.userId.toString())
+                            .child("note").setValue(note.toString())
+                        Toast.makeText(itemView.context, "note added", Toast.LENGTH_SHORT).show()
+                        dialog.dismiss()
+                    }
+                }
+                dialog.show()
             }
         }
     }
 
-    private fun sendSms(userName:String,userNumber: String, appointmentTime: String, isApproved: Boolean) {
+    private fun sendSms(
+        userName: String,
+        userNumber: String,
+        appointmentTime: String,
+        appointmentDate: String,
+        isApproved: Boolean
+    ) {
         val message = if (isApproved) {
-            "Respected $userName,\nYour Appointment for Magnet Therapy is Approved.\nTime: $appointmentTime"
+            "Respected $userName,\nYour Appointment for Magnet Therapy is Approved.\nTime: $appointmentTime\nDate: $appointmentDate"
         } else {
-            "Respected $userName,\nYour Appointment for Magnet Therapy is Canceled.\nTime: $appointmentTime"
+            "Respected $userName,\nYour Appointment for Magnet Therapy is Canceled.\nTime: $appointmentTime\n" +
+                    "Date: $appointmentDate"
         }
         SmsManager.getDefault().sendTextMessage(
             "$userNumber",
