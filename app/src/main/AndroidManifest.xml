@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrSide">
-        <activity android:name=".home.fragment.EditProfileActivity"></activity>
+        <activity android:name=".home.fragment.EditProfileActivity"/>
         <activity android:name=".home.HomeMainActivity" />
         <activity android:name=".authentication.AuthMainActivity" />
         <activity android:name=".splash.SplashActivity">

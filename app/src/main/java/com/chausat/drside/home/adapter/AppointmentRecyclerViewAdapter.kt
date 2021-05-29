@@ -81,6 +81,7 @@ class AppointmentRecyclerViewAdapter :
             textViewPatientContact.text = userData.userContact
             textViewPatientAppointment.text = userData.appointmentTime
             textViewPatientAppointmentDate.text = userData.appointmentDate
+            textViewPatientAppointmentNote.text = userData.note
             buttonAcceptAppointment.setOnClickListener {
                 sendSms(
                     userData.userName,

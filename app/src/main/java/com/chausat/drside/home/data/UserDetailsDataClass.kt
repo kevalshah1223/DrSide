@@ -7,7 +7,8 @@ data class UserDetailsDataClass(
     val appointmentTime: String,
     val appointmentDate: String,
     val gender: String,
-    val approved: String
+    val approved: String,
+    val note: String
 ) {
     constructor() : this(
         userId = 0,
@@ -16,6 +17,7 @@ data class UserDetailsDataClass(
         appointmentTime = "",
         appointmentDate = "",
         gender = "",
-        approved = ""
+        approved = "",
+        note = ""
     )
 }
