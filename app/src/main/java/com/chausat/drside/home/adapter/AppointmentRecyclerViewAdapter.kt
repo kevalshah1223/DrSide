@@ -114,9 +114,9 @@ class AppointmentRecyclerViewAdapter :
                 val dialog = Dialog(itemView.context)
                 dialog.setContentView(R.layout.custom_dialog_add_note)
                 dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                dialog.findViewById<AppCompatEditText>(R.id.editTextNote).setText(userData.note)
                 dialog.findViewById<MaterialButton>(R.id.buttonAddNote).setOnClickListener {
                     val note = dialog.findViewById<AppCompatEditText>(R.id.editTextNote).text
-
                     if(note.isNullOrEmpty()){
                         Toast.makeText(itemView.context, "Please enter note", Toast.LENGTH_SHORT)
                             .show()
