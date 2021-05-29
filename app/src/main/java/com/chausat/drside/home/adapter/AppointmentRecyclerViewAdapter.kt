@@ -81,7 +81,12 @@ class AppointmentRecyclerViewAdapter :
             textViewPatientContact.text = userData.userContact
             textViewPatientAppointment.text = userData.appointmentTime
             textViewPatientAppointmentDate.text = userData.appointmentDate
-            textViewPatientAppointmentNote.text = userData.note
+            if (userData.note.isNullOrEmpty()) {
+                textViewPatientAppointmentNote.text =
+                    itemView.context.getString(R.string.label_click_to_add_note)
+            } else {
+                textViewPatientAppointmentNote.text = userData.note
+            }
             buttonAcceptAppointment.setOnClickListener {
                 sendSms(
                     userData.userName,
@@ -117,11 +122,12 @@ class AppointmentRecyclerViewAdapter :
                 dialog.findViewById<AppCompatEditText>(R.id.editTextNote).setText(userData.note)
                 dialog.findViewById<MaterialButton>(R.id.buttonAddNote).setOnClickListener {
                     val note = dialog.findViewById<AppCompatEditText>(R.id.editTextNote).text
-                    if(note.isNullOrEmpty()){
+                    if (note.isNullOrEmpty()) {
                         Toast.makeText(itemView.context, "Please enter note", Toast.LENGTH_SHORT)
                             .show()
-                    }else {
-                        FirebaseDatabase.getInstance().getReference("appointmentDetails").child(userData.userId.toString())
+                    } else {
+                        FirebaseDatabase.getInstance().getReference("appointmentDetails")
+                            .child(userData.userId.toString())
                             .child("note").setValue(note.toString())
                         Toast.makeText(itemView.context, "note added", Toast.LENGTH_SHORT).show()
                         dialog.dismiss()
