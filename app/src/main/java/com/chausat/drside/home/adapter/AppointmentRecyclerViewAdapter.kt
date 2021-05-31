@@ -92,7 +92,7 @@ class AppointmentRecyclerViewAdapter :
                     userData.userName,
                     userData.userContact,
                     userData.appointmentTime,
-                    userData.appointmentTime,
+                    userData.appointmentDate,
                     true
                 )
                 setStatus(true, userData.userId)
@@ -106,7 +106,7 @@ class AppointmentRecyclerViewAdapter :
                     userData.userName,
                     userData.userContact,
                     userData.appointmentTime,
-                    userData.appointmentTime,
+                    userData.appointmentDate,
                     false
                 )
                 setStatus(false, userData.userId)
